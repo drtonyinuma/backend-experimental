@@ -1,0 +1,26 @@
+
+name: Test Runner WSL2
+
+on:
+  workflow_dispatch:
+  pull_request:
+    branches: [desarrollo]
+    types: [opened, synchronize, reopened]
+
+jobs:
+  test:
+    runs-on: [self-hosted, linux, x64, local-testing]
+
+    steps:
+      - name: Verificar runner
+        run: |
+          echo "Runner funcionando"
+          hostname
+          pwd
+          uname -a
+
+      - name: Descargar repositorio
+        uses: actions/checkout@v4
+
+      - name: Mostrar archivos
+        run: ls -la
